@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Data
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Quiz implements Serializable {
+public class Quiz {
     private List<QuestionAndAnswers> questionAndAnswers;
 }
