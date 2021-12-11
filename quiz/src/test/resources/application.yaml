@@ -1,0 +1,10 @@
+app:
+  path: './src/test/resources/data/test-question-and-answers.csv'
+  correct-answers: '4'
+
+spring:
+  shell:
+    interactive:
+      enabled: false
+  main:
+    allow-circular-references: true
