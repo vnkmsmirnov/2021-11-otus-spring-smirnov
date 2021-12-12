@@ -1,0 +1,7 @@
+app:
+  path: './data/question-and-answers{{locale}}.csv'
+  correct-answers: '4'
+
+spring:
+  main:
+    allow-circular-references: true
