@@ -1,7 +1,7 @@
 package ru.otus.library.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.model.AuthorEntity;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Repository
+@Component
 public class AuthorRepositoryJpa implements AuthorRepository {
 
     @PersistenceContext

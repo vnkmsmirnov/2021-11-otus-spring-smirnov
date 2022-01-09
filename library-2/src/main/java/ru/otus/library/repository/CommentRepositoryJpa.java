@@ -1,8 +1,7 @@
 package ru.otus.library.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
-import ru.otus.library.model.BookEntity;
+import org.springframework.stereotype.Component;
 import ru.otus.library.model.CommentEntity;
 
 import javax.persistence.EntityManager;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Repository
+@Component
 public class CommentRepositoryJpa implements CommentRepository {
 
     @PersistenceContext

@@ -1,7 +1,7 @@
 package ru.otus.library.repository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.library.model.BookEntity;
 
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Repository
+@Component
 public class BookRepositoryJpa implements BookRepository {
 
     @PersistenceContext
