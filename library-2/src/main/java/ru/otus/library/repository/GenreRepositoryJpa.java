@@ -2,7 +2,6 @@ package ru.otus.library.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.model.GenreEntity;
 
 import javax.persistence.EntityManager;
@@ -14,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
 public class GenreRepositoryJpa implements GenreRepository {
+
     @PersistenceContext
     private final EntityManager em;
 
@@ -41,7 +41,6 @@ public class GenreRepositoryJpa implements GenreRepository {
                 GenreEntity.class).getResultList();
     }
 
-    @Transactional
     @Override
     public Long save(GenreEntity genre) {
         if (genre.getId() == null || genre.getId() == 0) {

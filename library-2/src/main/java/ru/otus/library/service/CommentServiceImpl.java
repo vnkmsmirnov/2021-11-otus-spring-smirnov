@@ -2,6 +2,7 @@ package ru.otus.library.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.dto.Comment;
 import ru.otus.library.mapping.CommentMapper;
 import ru.otus.library.repository.CommentRepository;
@@ -12,7 +13,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CommentServiceImpl implements CommentService {
+
     private final CommentRepository commentRepository;
+
     private final CommentMapper commentMapper;
 
     @Override
@@ -40,11 +43,13 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     @Override
     public Long save(Comment comment) {
         return commentRepository.save(commentMapper.toEntity(comment));
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         commentRepository.deleteById(id);

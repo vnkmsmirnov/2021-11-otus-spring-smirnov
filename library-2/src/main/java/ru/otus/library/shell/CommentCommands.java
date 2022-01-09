@@ -12,6 +12,7 @@ import java.util.List;
 @ShellComponent
 @RequiredArgsConstructor
 public class CommentCommands {
+
     private final CommentService commentService;
 
     @ShellMethod(value = "Get comment -> id", key = "c")

@@ -14,12 +14,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "AUTHORS")
 public class AuthorEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
+
     @Column(name = "LAST_NAME")
     private String lastName;
 }

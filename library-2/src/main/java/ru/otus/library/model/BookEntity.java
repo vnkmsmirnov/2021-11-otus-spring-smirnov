@@ -22,16 +22,21 @@ import java.util.List;
 @Entity
 @Table(name = "BOOKS")
 public class BookEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
     @Column(name = "TITLE", nullable = false)
     private String title;
+
     @Column(name = "PAGES", nullable = false)
     private Integer pages;
+
     @Column(name = "AUTHOR_ID")
     private Long authorId;
+
     @Column(name = "GENRE_ID")
     private Long genreId;
 

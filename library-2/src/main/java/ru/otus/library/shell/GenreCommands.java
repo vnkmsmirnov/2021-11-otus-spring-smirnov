@@ -12,6 +12,7 @@ import java.util.List;
 @ShellComponent
 @RequiredArgsConstructor
 public class GenreCommands {
+
     private final GenreService genreService;
 
     @ShellMethod(value = "Get genre -> id", key = "g")

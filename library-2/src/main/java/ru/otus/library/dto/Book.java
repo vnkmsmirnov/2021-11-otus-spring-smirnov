@@ -12,10 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
+
     private Long id;
+
     private String title;
+
     private Integer pages;
+
     private Genre genre;
+
     private Author author;
+
     private List<Comment> comments;
 }

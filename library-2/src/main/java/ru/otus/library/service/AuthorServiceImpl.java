@@ -12,7 +12,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class AuthorServiceImpl implements AuthorService {
+
     private final AuthorRepository authorRepository;
+
     private final AuthorMapper authorMapper;
 
     @Override

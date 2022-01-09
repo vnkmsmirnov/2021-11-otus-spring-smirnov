@@ -14,6 +14,7 @@ import java.util.List;
 @ShellComponent
 @RequiredArgsConstructor
 public class BookCommands {
+
     private final BookService bookService;
 
     @ShellMethod(value = "Get book -> id", key = "b")

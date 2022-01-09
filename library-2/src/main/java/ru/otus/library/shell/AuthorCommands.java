@@ -12,6 +12,7 @@ import java.util.List;
 @ShellComponent
 @RequiredArgsConstructor
 public class AuthorCommands {
+
     private final AuthorService authorService;
 
     @ShellMethod(value = "Get author -> id", key = "a")

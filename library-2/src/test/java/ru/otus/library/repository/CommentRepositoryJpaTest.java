@@ -28,8 +28,6 @@ public class CommentRepositoryJpaTest {
 
     @Autowired
     private CommentRepositoryJpa commentRepository;
-    @Autowired
-    private TestEntityManager em;
 
     @Test
     void findByIdTest() {
@@ -71,7 +69,6 @@ public class CommentRepositoryJpaTest {
                 .usingRecursiveComparison()
                 .isEqualTo(SAVED_COMMENT);
         commentRepository.deleteById(SAVED_COMMENT.getId());
-        em.clear();
         var result = commentRepository.findById(SAVED_COMMENT.getId());
         assertThat(result)
                 .isEqualTo(Optional.empty());

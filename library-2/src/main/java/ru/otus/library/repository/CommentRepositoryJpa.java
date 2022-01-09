@@ -2,7 +2,7 @@ package ru.otus.library.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import ru.otus.library.model.BookEntity;
 import ru.otus.library.model.CommentEntity;
 
 import javax.persistence.EntityManager;
@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Repository
 public class CommentRepositoryJpa implements CommentRepository {
+
     @PersistenceContext
     private final EntityManager em;
 
@@ -35,7 +36,6 @@ public class CommentRepositoryJpa implements CommentRepository {
                 CommentEntity.class).getResultList();
     }
 
-    @Transactional
     @Override
     public Long save(CommentEntity comment) {
         if (comment.getId() == null || comment.getId() == 0) {
@@ -46,11 +46,11 @@ public class CommentRepositoryJpa implements CommentRepository {
         }
     }
 
-    @Transactional
     @Override
     public void deleteById(Long id) {
-        var query = em.createQuery("delete from CommentEntity comment where comment.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+        var comment = em.merge(CommentEntity.builder()
+                .id(id)
+                .build());
+        em.remove(comment);
     }
 }

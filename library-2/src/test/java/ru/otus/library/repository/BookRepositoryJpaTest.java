@@ -64,8 +64,6 @@ class BookRepositoryJpaTest {
 
     @Autowired
     private BookRepositoryJpa bookRepository;
-    @Autowired
-    private TestEntityManager em;
 
     @Test
     void findByIdTest() {
@@ -99,7 +97,6 @@ class BookRepositoryJpaTest {
                 .usingRecursiveComparison()
                 .isEqualTo(SAVED_BOOK);
         bookRepository.deleteById(SAVED_BOOK.getId());
-        em.clear();
         var result = bookRepository.findById(SAVED_BOOK.getId());
         assertThat(result)
                 .isEqualTo(Optional.empty());
