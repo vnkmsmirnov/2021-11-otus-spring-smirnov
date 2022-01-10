@@ -9,8 +9,6 @@ public interface CommentRepository {
 
     Optional<CommentEntity> findById(Long id);
 
-    List<CommentEntity> findByBookId(Long id);
-
     List<CommentEntity> findAll();
 
     Long save(CommentEntity author);

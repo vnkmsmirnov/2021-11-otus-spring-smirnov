@@ -22,14 +22,6 @@ public class CommentRepositoryJpa implements CommentRepository {
     }
 
     @Override
-    public List<CommentEntity> findByBookId(Long id) {
-        var query = em.createQuery("select c from CommentEntity c where c.bookId = :id order by c.id",
-                CommentEntity.class);
-        query.setParameter("id", id);
-        return query.getResultList();
-    }
-
-    @Override
     public List<CommentEntity> findAll() {
         return em.createQuery("select c from CommentEntity c order by c.id",
                 CommentEntity.class).getResultList();

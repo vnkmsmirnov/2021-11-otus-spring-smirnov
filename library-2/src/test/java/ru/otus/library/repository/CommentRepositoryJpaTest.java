@@ -3,7 +3,6 @@ package ru.otus.library.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import ru.otus.library.model.CommentEntity;
 
@@ -35,14 +34,6 @@ public class CommentRepositoryJpaTest {
         assertThat(result).isPresent().get()
                 .usingRecursiveComparison()
                 .isEqualTo(SAVED_COMMENT);
-    }
-
-    @Test
-    void findByBookIdTest() {
-        var result = commentRepository.findByBookId(SAVED_COMMENT.getBookId());
-        assertThat(result)
-                .usingRecursiveFieldByFieldElementComparator()
-                .containsExactlyInAnyOrder(SAVED_COMMENT);
     }
 
     @Test

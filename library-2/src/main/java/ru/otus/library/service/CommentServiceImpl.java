@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.dto.Comment;
 import ru.otus.library.mapping.CommentMapper;
+import ru.otus.library.repository.BookRepository;
 import ru.otus.library.repository.CommentRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
+
+    private final BookRepository bookRepository;
 
     private final CommentMapper commentMapper;
 
@@ -29,10 +33,11 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> getByBookId(Long id) {
-        return commentRepository.findByBookId(id)
+        var optBook = bookRepository.findById(id);
+        return optBook.map(bookEntity -> bookEntity.getComments()
                 .stream()
                 .map(commentMapper::fromEntity)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())).orElse(Collections.emptyList());
     }
 
     @Override
