@@ -31,6 +31,7 @@ public class CommentServiceImpl implements CommentService {
         return Comment.builder().build();
     }
 
+    @Transactional
     @Override
     public List<Comment> getByBookId(Long id) {
         var optBook = bookRepository.findById(id);
