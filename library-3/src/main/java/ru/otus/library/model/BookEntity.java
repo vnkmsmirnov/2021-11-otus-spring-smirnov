@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -41,15 +40,15 @@ public class BookEntity {
     @Column(name = "GENRE_ID")
     private Long genreId;
 
-    @ManyToOne(targetEntity = AuthorEntity.class,  cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "AUTHOR_ID", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = AuthorEntity.class,  cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     private AuthorEntity author;
 
-    @ManyToOne(targetEntity = GenreEntity.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "GENRE_ID", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = GenreEntity.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "GENRE_ID",referencedColumnName = "ID", insertable = false, updatable = false)
     private GenreEntity genre;
 
-    @OneToMany(targetEntity = CommentEntity.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID", insertable = false, updatable = false)
-    private List<CommentEntity> comments = new ArrayList<>();
+    @OneToMany(targetEntity = CommentEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "BOOK_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    private List<CommentEntity> comments;
 }

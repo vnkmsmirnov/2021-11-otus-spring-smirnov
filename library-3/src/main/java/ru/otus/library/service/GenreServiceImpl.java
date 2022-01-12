@@ -2,7 +2,6 @@ package ru.otus.library.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.dto.Genre;
 import ru.otus.library.mapping.GenreMapper;
 import ru.otus.library.repository.GenreRepository;
@@ -35,7 +34,6 @@ public class GenreServiceImpl implements GenreService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
     public Long save(Genre genre) {
         return genreRepository.save(genreMapper.toEntity(genre)).getId();

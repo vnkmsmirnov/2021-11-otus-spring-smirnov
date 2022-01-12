@@ -8,6 +8,7 @@ import ru.otus.library.mapping.CommentMapper;
 import ru.otus.library.repository.BookRepository;
 import ru.otus.library.repository.CommentRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,12 +31,15 @@ public class CommentServiceImpl implements CommentService {
         return Comment.builder().build();
     }
 
+    @Transactional
     @Override
     public List<Comment> getByBookId(Long id) {
-        return commentRepository.findByBookId(id)
+        var optBook = bookRepository.findById(id);
+        return optBook.map(bookEntity -> bookEntity.getComments()
                 .stream()
                 .map(commentMapper::fromEntity)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()))
+                .orElse(Collections.emptyList());
     }
 
     @Override
@@ -46,13 +50,11 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
     public Long save(Comment comment) {
         return commentRepository.save(commentMapper.toEntity(comment)).getId();
     }
 
-    @Transactional
     @Override
     public void delete(Long id) {
         commentRepository.deleteById(id);

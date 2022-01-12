@@ -42,7 +42,6 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
     public Long save(Book book) {
         var bookEntity = bookMapper.toEntity(book);
@@ -62,7 +61,6 @@ public class BookServiceImpl implements BookService {
         return bookRepository.save(bookEntity).getId();
     }
 
-    @Transactional
     @Override
     public void delete(Long id) {
         bookRepository.deleteById(id);

@@ -2,7 +2,6 @@ package ru.otus.library.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.otus.library.dto.Author;
 import ru.otus.library.mapping.AuthorMapper;
 import ru.otus.library.repository.AuthorRepository;
@@ -35,7 +34,6 @@ public class AuthorServiceImpl implements AuthorService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     @Override
     public Long save(Author author) {
         return authorRepository.save(authorMapper.toEntity(author)).getId();

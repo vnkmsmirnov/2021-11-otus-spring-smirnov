@@ -35,14 +35,6 @@ public class CommentRepositoryTest {
     }
 
     @Test
-    void findByBookIdTest() {
-        var result = commentRepository.findByBookId(SAVED_COMMENT.getId());
-        assertThat(result)
-                .usingRecursiveFieldByFieldElementComparator()
-                .containsExactlyInAnyOrder(SAVED_COMMENT);
-    }
-
-    @Test
     void findAllTest() {
         var result = commentRepository.findAll();
         assertThat(result)
