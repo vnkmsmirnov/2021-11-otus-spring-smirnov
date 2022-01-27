@@ -14,6 +14,4 @@ public class Comment {
     private String id;
 
     private String text;
-
-    private String bookId;
 }

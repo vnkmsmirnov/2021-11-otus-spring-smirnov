@@ -6,7 +6,6 @@ import ru.otus.library.dto.Book;
 import ru.otus.library.model.BookDocument;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,18 +29,6 @@ public class BookMapperImpl implements BookMapper {
                         .flatMap(Collection::stream)
                         .map(commentMapper::fromEntity)
                         .collect(Collectors.toList()))
-                .build();
-    }
-
-    @Override
-    public Book withoutCommentsFromEntity(BookDocument entity) {
-        return Book.builder()
-                .id(entity.getId())
-                .title(entity.getTitle())
-                .pages(entity.getPages())
-                .genre(genreMapper.fromEntity(entity.getGenre()))
-                .author(authorMapper.fromEntity(entity.getAuthor()))
-                .comments(Collections.emptyList())
                 .build();
     }
 

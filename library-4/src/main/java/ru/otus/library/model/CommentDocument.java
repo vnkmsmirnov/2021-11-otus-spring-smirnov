@@ -18,6 +18,4 @@ public class CommentDocument {
     private String id;
 
     private String text;
-
-    private String bookId;
 }

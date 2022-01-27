@@ -7,8 +7,9 @@ import ru.otus.library.model.AuthorDocument;
 import ru.otus.library.model.BookDocument;
 import ru.otus.library.model.CommentDocument;
 import ru.otus.library.model.GenreDocument;
+import ru.otus.library.repository.AuthorRepository;
 import ru.otus.library.repository.BookRepository;
-import ru.otus.library.repository.CommentRepository;
+import ru.otus.library.repository.GenreRepository;
 
 import java.util.Collections;
 
@@ -22,30 +23,31 @@ public class DatabaseChangelogTest {
 
     @ChangeSet(order = "002", id = "initData", author = "smirnov", runAlways = true)
     public void initData(BookRepository bookRepository,
-                         CommentRepository commentRepository) {
+                         AuthorRepository authorRepository,
+                         GenreRepository genreRepository) {
         var testBookId = "B_TEST_ID_1";
         var comments = Collections.singletonList(
                 CommentDocument.builder()
                         .id("C_TEST_ID_1")
                         .text("TEST_COMMENT_1")
-                        .bookId(testBookId)
                         .build());
         var books = Collections.singletonList(
                 BookDocument.builder()
                         .id(testBookId)
                         .title("TEST_TITLE_1")
                         .pages(240)
-                        .author(AuthorDocument.builder()
+                        .author(authorRepository.insert(AuthorDocument.builder()
+                                .id("A_TEST_ID_1")
                                 .name("TEST_AUTHOR_1")
-                                .build())
-                        .genre(GenreDocument.builder()
+                                .build()))
+                        .genre(genreRepository.insert(GenreDocument.builder()
+                                .id("G_TEST_ID_1")
                                 .name("TEST_GENRE_1")
-                                .build())
+                                .build()))
                         .comments(comments)
                         .build()
         );
 
         bookRepository.insert(books);
-        commentRepository.insert(comments);
     }
 }

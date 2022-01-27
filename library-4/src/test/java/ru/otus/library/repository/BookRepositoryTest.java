@@ -16,42 +16,54 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataMongoTest
 class BookRepositoryTest {
 
+    private static final CommentDocument SAVED_COMMENT = CommentDocument.builder()
+            .id("C_TEST_ID_1")
+            .text("TEST_COMMENT_1")
+            .build();
+
+    private static final CommentDocument EXPECTED_COMMENT = CommentDocument.builder()
+            .id("C_TEST_ID_2")
+            .text("TEST_COMMENT_2")
+            .build();
+
     private static final BookDocument SAVED_BOOK = BookDocument.builder()
             .id("B_TEST_ID_1")
             .title("TEST_TITLE_1")
             .pages(240)
             .author(AuthorDocument.builder()
+                    .id("A_TEST_ID_1")
                     .name("TEST_AUTHOR_1")
                     .build())
             .genre(GenreDocument.builder()
+                    .id("G_TEST_ID_1")
                     .name("TEST_GENRE_1")
                     .build())
-            .comments(Collections.singletonList(CommentDocument.builder()
-                            .id("C_TEST_ID_1")
-                            .text("TEST_COMMENT_1")
-                            .bookId("B_TEST_ID_1")
-                            .build()))
+            .comments(Collections.singletonList(SAVED_COMMENT))
+            .build();
+
+    private static final AuthorDocument EXPECTED_AUTHOR = AuthorDocument.builder()
+            .id("A_TEST_ID_2")
+            .name("TEST_AUTHOR_2")
+            .build();
+
+    private static final GenreDocument EXPECTED_GENRE = GenreDocument.builder()
+            .id("G_TEST_ID_2")
+            .name("TEST_GENRE_2")
             .build();
 
     private static final BookDocument EXPECTED_BOOK = BookDocument.builder()
-            .id("B_TEST_ID_1")
-            .title("TEST_TITLE_1")
+            .id("B_TEST_ID_2")
+            .title("TEST_TITLE_2")
             .pages(240)
-            .author(AuthorDocument.builder()
-                    .name("TEST_AUTHOR_1")
-                    .build())
-            .genre(GenreDocument.builder()
-                    .name("TEST_GENRE_1")
-                    .build())
-            .comments(Collections.singletonList(CommentDocument.builder()
-                    .id("C_TEST_ID_1")
-                    .text("TEST_COMMENT_1")
-                    .bookId("B_TEST_ID_1")
-                    .build()))
+            .comments(Collections.singletonList(EXPECTED_COMMENT))
             .build();
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
 
     @Test
     void findByIdTest() {
@@ -71,10 +83,13 @@ class BookRepositoryTest {
 
     @Test
     void saveTest() {
+        EXPECTED_BOOK.setAuthor(authorRepository.save(EXPECTED_AUTHOR));
+        EXPECTED_BOOK.setGenre(genreRepository.save(EXPECTED_GENRE));
         var result = bookRepository.save(EXPECTED_BOOK);
         assertThat(result)
                 .usingRecursiveComparison()
                 .isEqualTo(EXPECTED_BOOK);
+        bookRepository.deleteById(EXPECTED_BOOK.getId());
     }
 
     @Test

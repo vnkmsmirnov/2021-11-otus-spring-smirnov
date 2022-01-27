@@ -10,7 +10,9 @@ public interface BookService {
 
     List<Book> getAll();
 
-    String save(Book book);
+    Book save(Book book);
+
+    Book addComment(String bookId, String comment);
 
     void delete(String id);
 }

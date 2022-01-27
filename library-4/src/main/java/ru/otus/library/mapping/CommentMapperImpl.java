@@ -12,7 +12,6 @@ public class CommentMapperImpl implements CommentMapper {
         return Comment.builder()
                 .id(entity.getId())
                 .text(entity.getText())
-                .bookId(entity.getBookId())
                 .build();
     }
 
@@ -21,7 +20,6 @@ public class CommentMapperImpl implements CommentMapper {
         return CommentDocument.builder()
                 .id(comment.getId())
                 .text(comment.getText())
-                .bookId(comment.getBookId())
                 .build();
     }
 }

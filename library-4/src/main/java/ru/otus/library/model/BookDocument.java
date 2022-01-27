@@ -2,9 +2,8 @@ package ru.otus.library.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.util.List;
 
@@ -24,11 +23,11 @@ public class BookDocument {
 
     private Integer pages;
 
+    @DBRef
     private AuthorDocument author;
 
+    @DBRef
     private GenreDocument genre;
 
-    @ReadOnlyProperty
-    @DocumentReference(lookup = "{'bookId':?#{#self._id} }", lazy = true)
     private List<CommentDocument> comments;
 }
