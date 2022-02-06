@@ -1,0 +1,39 @@
+
+<div class="content" role="main">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-dark my-5">
+          <div class="card-body">
+            <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+            <ul class="text-center list-inline py-3">
+              <li class="list-inline-item">
+                <a routerLink="/book-list" class="btn btn-info">List Books</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/book-add" class="btn btn-info">Add Book</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/author-list" class="btn btn-info">List Authors</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/author-add" class="btn btn-info">Add Author</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/genre-list" class="btn btn-info">List Genres</a>
+              </li>
+              <li class="list-inline-item">
+                <a routerLink="/genre-add" class="btn btn-info">Add Genre</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
