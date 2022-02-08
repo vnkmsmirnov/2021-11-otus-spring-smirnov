@@ -1,0 +1,45 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="book.title"
+               class="form-control"
+               id="title"
+               name="title"
+               placeholder="Enter book title"
+               required>
+      </div>
+      <div class="form-group">
+        <label>Pages</label>
+        <input type="text" [(ngModel)]="book.pages"
+               class="form-control"
+               id="pages"
+               name="pages"
+               placeholder="Enter book number of pages"
+               required>
+      </div>
+      <div class="form-group">
+        <label>Genre</label>
+        <select name="genreName"
+                class="form-control" [(ngModel)]="book.genre">
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{genre.name}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Author</label>
+        <select name="authorName"
+                class="form-control" [(ngModel)]="book.author">
+          <option *ngFor="let author of authors" [ngValue]="author">
+            {{author.name}}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>
