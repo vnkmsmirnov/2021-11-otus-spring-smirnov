@@ -1,0 +1,25 @@
+<ul *ngIf="isAuthenticated" class="text-center list-inline py-3">
+  <li class="list-inline-item">
+    <a routerLink="/main/book-list" class="btn btn-info">List Books</a>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/main/book-add" class="btn btn-info">Add Book</a>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/main/author-list" class="btn btn-info">List Authors</a>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/main/author-add" class="btn btn-info">Add Author</a>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/main/genre-list" class="btn btn-info">List Genres</a>
+  </li>
+  <li class="list-inline-item">
+    <a routerLink="/main/genre-add" class="btn btn-info">Add Genre</a>
+  </li>
+  <li class="list-inline-item">
+    <span (click)="doLogout()" class="btn btn-info">Logout</span>
+  </li>
+</ul>
+<router-outlet></router-outlet>
+
