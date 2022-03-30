@@ -1,0 +1,29 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th *ngIf="isAdmin" scope="col" colspan="2">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let author of authors">
+        <td>{{ author.id }}</td>
+        <td>{{ author.firstName }}</td>
+        <td *ngIf="isAdmin">
+          <li class="list-inline-item">
+            <a routerLink="/author-edit-form/{{ author.id }}" class="btn btn-info">Edit</a>
+          </li>
+        </td>
+        <td *ngIf="isAdmin">
+          <li class="list-inline-item">
+            <span (click)="onDelete(author.id)" class="btn btn-info">Delete</span>
+          </li>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
