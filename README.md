@@ -25,3 +25,5 @@ lesson-13 - library-4
 lesson-17 - library-5, library-5.1
 
 lesson-23 - library-7, library-7.1
+
+lesson-25 - library-8, library-8.1
