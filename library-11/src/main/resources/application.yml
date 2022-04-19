@@ -1,0 +1,35 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: developer
+
+    flyway:
+        url: jdbc:postgresql://localhost:5432/postgres
+        user: postgres
+        password: developer
+
+    jpa:
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+
+    show-sql: true
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "health, logfile"
+    endpoint:
+        health:
+            show-details: always
+        logfile:
+            enabled: true
+            external-file: 'app.log'
+
+logging:
+    level:
+        root: info
+    file:
+        name: 'app.log'
